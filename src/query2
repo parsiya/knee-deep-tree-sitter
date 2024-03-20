@@ -1,0 +1,29 @@
+(function_declaration
+  name: (identifier) @func.name
+  result: [
+    (parameter_list
+      (parameter_declaration
+        type: (type_identifier) @return.type))
+    (type_identifier) @return.type
+    (qualified_type
+    package: (package_identifier) @return.type.package
+    name: (type_identifier) @return.type)
+    (pointer_type (type_identifier) @return.type)
+    (struct_type) @return.type
+    (interface_type) @return.type
+    (array_type
+      length: (_) @return.array.type.length
+      element: (_) @return.array.type.type) @return.type
+    (slice_type
+      element: (_) @return.slice.type.type) @return.type
+    (map_type
+      key: (_) @return.map.type.key
+      value: (_) @return.map.type.value) @return.type
+    (channel_type
+      value: (_) @return.channel.type.type) @return.type
+    (function_type) @return.type
+    (union_type
+      (_) @union.type.first "|" (_) @union.type.second ) @return.type
+    (negated_type) @return.type
+  ]
+)

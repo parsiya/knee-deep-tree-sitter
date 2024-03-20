@@ -1,0 +1,31 @@
+(function_declaration
+  name: (identifier) @func.name
+  parameters: (parameter_list [
+    (parameter_declaration
+      name: (identifier) @param.name
+      type: [
+        (type_identifier) @param.type.identifier
+        (slice_type
+          element: (_) @param.type.slice)
+        (pointer_type (_) @param.type.pointer)
+        (struct_type
+          (field_declaration_list
+            (field_declaration
+              type: (_) @param.type.struct.field)))
+        (array_type
+          length: (_) @param.type.array.length
+          element: (_) @param.type.array.type)
+        (qualified_type
+          package: (package_identifier) @param.type.package
+          name: (type_identifier) @param.type.package.type)
+        (map_type
+          key: (_) @param.type.map.key
+          value: (_) @param.type.map.value)
+        (channel_type
+          value: (_) @param.type.channel.type)
+      ])
+    (variadic_parameter_declaration
+      name: (identifier) @variadic.param.name
+      type: (_) @variadic.param.type)
+    ]
+))
