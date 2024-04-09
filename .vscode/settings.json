@@ -1,0 +1,7 @@
+{
+    "codeQL.githubDatabase.download": "never",
+    "rust-analyzer.linkedProjects": [
+        "./Cargo.toml"
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false
+}

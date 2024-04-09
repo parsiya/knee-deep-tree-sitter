@@ -6,8 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+serde = { version = "1.0.197", features = ["derive"]}
+serde_json = "1.0.115"
 tree-sitter = "0.20.0"
 tree-sitter-go = "0.20.0"
+type-sitter-lib = { version = "0.4.0", features = ["yak-sitter"] }
+yak-sitter = "0.4.0"
 
 [build-dependencies]
 cc="*"

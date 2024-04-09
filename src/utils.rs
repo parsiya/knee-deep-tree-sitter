@@ -1,7 +1,7 @@
-use tree_sitter::{Parser, Query, QueryCursor, Tree};
+use tree_sitter::{Node, Parser, Query, QueryCursor, Tree};
 
 /// Extract the text of tree-sitter captured node from source.
-fn node_text(node: tree_sitter::Node, src: &str) -> String {
+pub(crate) fn node_text(node: tree_sitter::Node, src: &str) -> String {
     return src[node.start_byte()..node.end_byte()].to_string();
 }
 
@@ -79,4 +79,24 @@ pub(crate) fn run_query(query_text: &str, src: &str) {
         }
         println!("-----");
     }
+}
+
+/// Find the first parent of type `kind`. If the input's type is the `kind`
+/// parameter, we will not return it. We're only interested in parents.
+pub(crate) fn parent_of_kind<'a>(n: &'a Node, kind: &str) -> Option<Node<'a>> {
+    // These work, too.
+    // let mut current_node = n.to_owned();
+    // let mut current_node = n.clone();
+    let mut current_node = *n;
+
+    while current_node.parent() != None {
+        // Already checked if the parent is not None so we can just unwrap.
+        current_node = current_node.parent().unwrap();
+        // Check the kind.
+        if current_node.kind() == kind {
+            return Some(current_node);
+        }
+    }
+    // return None;
+    None
 }
